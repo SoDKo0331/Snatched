@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Your University System</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div>
+        <h1>Weather Checker</h1>
+        <form (ngSubmit)="getWeather()">
+          <label for="city">Enter city name:</label>
+          <input type="text" id="city" [(ngModel)]="city" name="city" required>
+          <button type="submit">Check Weather</button>
+        </form>
+
+        <div *ngIf="weatherData">
+          <h2>Weather in {{ weatherData.name }}</h2>
+          <p><strong>Temperature:</strong> {{ weatherData.main.temp}} °C</p>
+          <p><strong>Weather:</strong> {{ weatherData.weather[0].description }}</p>
+          <p><strong>Humidity:</strong> {{ weatherData.main.humidity }}%</p>
+          <p><strong>Wind Speed:</strong> {{ weatherData.wind.speed }} m/s</p>
+        </div>
+      </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

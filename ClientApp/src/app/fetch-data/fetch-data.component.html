@@ -1,0 +1,199 @@
+<h1>ALL Accounts</h1>
+<div>
+  <button class="btn btn-primary m-3" type="button" data-bs-toggle="modal" data-bs-target="#newModal"
+    (click)="openpostModal()" [routerLink]="['/counter']">
+    <-- Registeration/Login </button>
+      <table class="table table-striped" *ngIf="isData && isAdmin">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Full Name</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Role ID</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let item of items">
+          <tr>
+            <td>
+              <input class="input-group-text" type="text" [value]="item.ID" disabled />
+            </td>
+            <td>
+              <input class="input-group-text" type="text" [value]="item.FName" disabled />
+            </td>
+            <td>
+              <input class="input-group-text" [value]="item.Username" disabled />
+            </td>
+            <td>
+              <input class="input-group-text" type="text" [value]="item.Password" disabled />
+            </td>
+            <td>
+              <input class="input-group-text" type="text" [value]="item.roleID" disabled />
+            </td>
+            <td>
+              <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                (click)="openEditModal(item)">
+                Edit
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-danger" (click)="deleteInfo(item.ID)" type="button">
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <table class="table table-striped" *ngIf="isData && !isAdmin">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Full Name</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Role ID</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let item of items">
+          <tr>
+            <td>
+              <input class="input-group-text" type="text" [value]="item.ID" disabled />
+            </td>
+            <td>
+              <input class="input-group-text" type="text" [value]="item.FName" disabled />
+            </td>
+            <td>
+              <input class="input-group-text" [value]="item.Username" disabled />
+            </td>
+            <td>
+              <input class="input-group-text" type="text" [value]="item.Password" disabled />
+            </td>
+            <td>
+              <input class="input-group-text" type="text" [value]="item.roleID" disabled />
+            </td>
+            <td>
+              <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                (click)="openEditModal(item)">
+                Edit
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-danger" (click)="deleteInfo(item.ID)" type="button">
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Modal update -->
+      <div *ngFor="let item of items" >
+        <div *ngIf="isData && isAdmin" id="exampleModal" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <form [formGroup]="accForm" (ngSubmit)="updating()">
+                <!-- ... Modal header ... -->
+                <div class="modal-body">
+                  <h4 class="my-3 d-flex justify-content-center">
+                    Updating section
+                  </h4>
+                  <div>
+                    Full Name
+                    <span class="text-danger" *ngIf="
+                    accForm.get('FName')?.invalid &&
+                    accForm.get('FName')?.touched
+                  ">is required!</span>
+                    <input type="text" class="input-group mb-3 bg-light border-1 rounded shadow-sm bg-body-tertiary"
+                      formControlName="FName" />
+                    Username
+                    <span class="text-danger" *ngIf="
+                    accForm.get('Username')?.invalid &&
+                    accForm.get('Username')?.touched
+                  ">is required!</span>
+                    <input type="text" class="input-group mb-3 bg-light border-1 rounded shadow-sm bg-body-tertiary"
+                      formControlName="Username" />
+                    Password
+                    <span class="text-danger" *ngIf="
+                    accForm.get('Password')?.invalid &&
+                    accForm.get('Password')?.touched
+                  ">is required!</span>
+                    <input type="text" class="input-group mb-3 bg-light border-1 rounded shadow-sm bg-body-tertiary"
+                      formControlName="Password" />
+                      Role ID
+                      <span class="text-danger" *ngIf="
+                      accForm.get('roleID')?.invalid &&
+                      accForm.get('roleID')?.touched
+                    ">is required!</span>
+                      <input type="text" class="input-group mb-3 bg-light border-1 rounded shadow-sm bg-body-tertiary"
+                        formControlName="roleID" />
+                    <input type="hidden" formControlName="ID" />
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit"
+                    class="btn btn-outline-success w-100 p-1 border-1 rounded text-dark shadow bg-body-tertiary">
+                    Save changes
+                  </button>
+                  <button type="button" class="btn btn-transparent w-100 p-1 text-dark" data-bs-dismiss="modal">
+                    Close
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngFor="let item of items">
+        <div *ngIf="isData && !isAdmin" id="exampleModal" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <form [formGroup]="accForm" (ngSubmit)="updating()">
+                <!-- ... Modal header ... -->
+                <div class="modal-body">
+                  <h4 class="my-3 d-flex justify-content-center">
+                    Updating section
+                  </h4>
+                  <div>
+                    Full Name
+                    <span class="text-danger" *ngIf="
+                    accForm.get('FName')?.invalid &&
+                    accForm.get('FName')?.touched
+                  ">is required!</span>
+                    <input type="text" class="input-group mb-3 bg-light border-1 rounded shadow-sm bg-body-tertiary"
+                      formControlName="FName" />
+                    Username
+                    <span class="text-danger" *ngIf="
+                    accForm.get('Username')?.invalid &&
+                    accForm.get('Username')?.touched
+                  ">is required!</span>
+                    <input type="text" class="input-group mb-3 bg-light border-1 rounded shadow-sm bg-body-tertiary"
+                      formControlName="Username" />
+                    Password
+                    <span class="text-danger" *ngIf="
+                    accForm.get('Password')?.invalid &&
+                    accForm.get('Password')?.touched
+                  ">is required!</span>
+                    <input type="text" class="input-group mb-3 bg-light border-1 rounded shadow-sm bg-body-tertiary"
+                      formControlName="Password" />
+                    <input type="hidden" formControlName="ID" />
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit"
+                    class="btn btn-outline-success w-100 p-1 border-1 rounded text-dark shadow bg-body-tertiary">
+                    Save changes
+                  </button>
+                  <button type="button" class="btn btn-transparent w-100 p-1 text-dark" data-bs-dismiss="modal">
+                    Close
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h1 *ngIf="!isData">Танд хандах эрх байхгүй байна!</h1>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</div>

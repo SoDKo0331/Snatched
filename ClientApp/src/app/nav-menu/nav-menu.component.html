@@ -1,0 +1,30 @@
+<header>
+  <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container">
+      <a class="navbar-brand" [routerLink]="['/']"><img src="https://dep.num.edu.mn/econ/wp-content/themes/numdepart/images/logo.png" width="50" height="50"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
+        aria-label="Toggle navigation" [attr.aria-expanded]="isExpanded" (click)="toggle()">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end" [ngClass]="{ show: isExpanded }">
+        <ul class="navbar-nav flex-grow">
+          <li class="nav-item" [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{ exact: true }">
+            <a class="nav-link text-dark" (click)="checker()" [routerLink]="['/']">Home</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']" aria-disabled="true">
+            <a class="nav-link text-dark" (click)="checker()" [routerLink]="['/fetch-data']" aria-disabled="true">Data</a>
+          </li>
+          <li *ngIf="isLoggedin" class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/chats']"> Chats </a>
+          </li>
+          <li *ngIf="!isLoggedin" class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" (click)="checker()" [routerLink]="['/counter']">Signup / Login </a>
+          </li>
+          <li *ngIf="isLoggedin" class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/counter']"  (click)="logOut()"> Log Out </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

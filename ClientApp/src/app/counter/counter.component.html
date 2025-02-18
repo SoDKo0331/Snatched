@@ -1,0 +1,126 @@
+<div class="bg-image">
+    <form class="d-flex justify-content-between needs-validation" [formGroup]="isRegistration ? infoForm : loginForm"
+        (ngSubmit)="onSubmit()" novalidate>
+        <div id="newModal" tabindex="-1">
+            <div class="bg-info">
+                <div style="width: 600px; height: 450px;"
+                    class="mt-5 pt-5 d-flex bg-info-subtle position-relative d-flex justify-content-center bg-light border rounded-4 border-1 border-primary-subtle flex-column">
+                    <div class="d-flex justify-content-around">
+                        <h4 class="m-3 d-flex justify-content-center">
+                            {{ isRegistration ? 'Registration' : 'Login' }} section
+                        </h4>
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3"  *ngIf="isRegistration">
+                                <input type="text" class="form-control" id="FName" formControlName="FName"
+                                    placeholder="Full Name">
+                                <label for="FName">Full Name</label>
+                                <div class="invalid-feedback"
+                                    *ngIf="infoForm.get('FName')?.errors?.required && infoForm.get('FName')?.touched">
+                                    Full Name is required!
+                                </div>
+                                <div class="invalid-feedback"
+                                    *ngIf="infoForm.get('FName')?.errors?.maxlength && infoForm.get('FName')?.touched">
+                                    Full Name should be at most 15 characters long.
+                                </div>
+                            </div>
+                            <div class="form-floating mb-3" *ngIf="isRegistration">
+                                <input type="text" class="form-control" id="Username" formControlName="Username"
+                                    placeholder="Username">
+                                <label for="Username">Username</label>
+                                <div class="invalid-feedback"
+                                    *ngIf="infoForm.get('Username')?.errors?.required && infoForm.get('Username')?.touched">
+                                    Username is required!
+                                </div>
+                                <div class="invalid-feedback"
+                                    *ngIf="infoForm.get('Username')?.errors?.maxlength && infoForm.get('Username')?.touched">
+                                    Username should be at most 10 characters long.
+                                </div>
+                            </div>
+                            <div class="form-floating mb-3" *ngIf="isRegistration">
+                                <input type="password" class="form-control" id="Password" formControlName="Password"
+                                    placeholder="Password">
+                                <label for="Password">Password</label>
+                                <div class="invalid-feedback"
+                                    *ngIf="infoForm.get('Password')?.errors?.required && infoForm.get('Password')?.touched">
+                                    Password is required!
+                                </div>
+                                <div class="invalid-feedback"
+                                    *ngIf="infoForm.get('Password')?.errors?.pattern && infoForm.get('Password')?.touched">
+                                    Password should contain at least one uppercase letter and one digit.
+                                </div>
+                                <div class="invalid-feedback"
+                                    *ngIf="infoForm.get('Password')?.errors?.maxlength && infoForm.get('Password')?.touched">
+                                    Password should be at most 15 characters long.
+                                </div>
+                            </div>
+                            <div class="form-floating mb-3" *ngIf="!isRegistration">
+                                <input type="text" class="form-control" id="Username" formControlName="Username"
+                                    placeholder="Username">
+                                <label for="Username">Username</label>
+                                <div class="invalid-feedback"
+                                    *ngIf="loginForm.get('Username')?.errors?.required && loginForm.get('Username')?.touched">
+                                    Username is required!
+                                </div>
+                                <div class="invalid-feedback"
+                                    *ngIf="loginForm.get('Username')?.errors?.maxlength && loginForm.get('Username')?.touched">
+                                    Username should be at most 10 characters long.
+                                </div>
+                            </div>
+                            <div class="form-floating mb-3"*ngIf="!isRegistration">
+                                <input type="password" class="form-control" id="Password" formControlName="Password"
+                                    placeholder="Password">
+                                <label for="Password">Password</label>
+                                <div class="invalid-feedback"
+                                    *ngIf="loginForm.get('Password')?.errors?.required && loginForm.get('Password')?.touched">
+                                    Password is required!
+                                </div>
+                                <div class="invalid-feedback"
+                                    *ngIf="loginForm.get('Password')?.errors?.pattern && loginForm.get('Password')?.touched">
+                                    Password should contain at least one uppercase letter and one digit.
+                                </div>
+                                <div class="invalid-feedback"
+                                    *ngIf="loginForm.get('Password')?.errors?.maxlength && loginForm.get('Password')?.touched">
+                                    Password should be at most 15 characters long.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" style="width: 200px;"
+                            class="btn btn-outline-info w-80 m-2 me-5 border-1 rounded text-dark shadow bg-body-tertiary">
+                            {{ isRegistration ? 'Register' : 'Login' }}
+                        </button>
+                        <button type="button" (click)="toggleForm()"
+                            class="btn btn-outline-info w-100 m-2 mx-5 border-1 rounded text-dark shadow bg-body-tertiary">
+                            {{ isRegistration ? 'or Login' : 'or Register' }}
+                        </button>
+                        
+                        <button type="button" [routerLink]="['/fetch-data']"
+                            class="btn btn-transparent m-2 mx-5 w-100 p-1 text-dark m-2">All accounts -></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <img src="https://static.vecteezy.com/system/resources/previews/009/205/381/non_2x/illustration-of-man-run-with-modern-laptop-captured-in-motion-hipster-surprised-bearded-web-developer-designer-or-programmer-with-laptop-modern-laptop-concept-continuous-line-design-style-vector.jpg"
+            style="width: 600px; height: 440px; --bs-img-opacity: .5;" class="mt-5 img-thumbnail border-0" alt="...">
+    </form>
+</div>
+
+<div id="chatbot-iframe">
+    <iframe
+    class="position-absolute bottom-0 end-0 m-5"
+        src="https://www.chatbase.co/chatbot-iframe/o2gqZeOI8xSUmlrA8kdfr"
+        width="300"
+        height="400"
+        frameborder="0"
+        allowfullscreen
+    ></iframe>
+</div>
+<div id="chatbot-button">
+    <button class="btn rounded-circle position-absolute bottom-0 end-0 m-4" (click)="toggleChatbot()">
+        <img src="https://dep.num.edu.mn/econ/wp-content/themes/numdepart/images/logo.png" alt="Chatbot Image" width="50" height="50">
+    </button>
+</div>
+<lib-toastify-toast-container></lib-toastify-toast-container>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
