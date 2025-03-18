@@ -16,19 +16,19 @@
         <tbody *ngFor="let item of items">
           <tr>
             <td>
-              <input class="input-group-text" type="text" [value]="item.ID" disabled />
+              <input class="input-group-text" type="text" [value]="item.id" disabled />
             </td>
             <td>
-              <input class="input-group-text" type="text" [value]="item.FName" disabled />
+              <input class="input-group-text" type="text" [value]="item.fname" disabled />
             </td>
             <td>
-              <input class="input-group-text" [value]="item.Username" disabled />
+              <input class="input-group-text" [value]="item.lname" disabled />
             </td>
             <td>
-              <input class="input-group-text" type="text" [value]="item.Password" disabled />
+              <input class="input-group-text" type="text" [value]="item.password" disabled />
             </td>
             <td>
-              <input class="input-group-text" type="text" [value]="item.roleID" disabled />
+              <input class="input-group-text" type="text" [value]="item.roleid" disabled />
             </td>
             <td>
               <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
@@ -37,7 +37,7 @@
               </button>
             </td>
             <td>
-              <button class="btn btn-danger" (click)="deleteInfo(item.ID)" type="button">
+              <button class="btn btn-danger" (click)="deleteInfo(item.id)" type="button">
                 Delete
               </button>
             </td>
@@ -48,29 +48,29 @@
       <table class="table table-striped" *ngIf="isData && !isAdmin">
         <thead>
           <tr>
-            <th>ID</th>
+            <th>id</th>
             <th>Full Name</th>
-            <th>Username</th>
-            <th>Password</th>
-            <th>Role ID</th>
+            <th>lname</th>
+            <th>password</th>
+            <th>Role id</th>
           </tr>
         </thead>
         <tbody *ngFor="let item of items">
           <tr>
             <td>
-              <input class="input-group-text" type="text" [value]="item.ID" disabled />
+              <input class="input-group-text" type="text" [value]="item.id" disabled />
             </td>
             <td>
-              <input class="input-group-text" type="text" [value]="item.FName" disabled />
+              <input class="input-group-text" type="text" [value]="item.fname" disabled />
             </td>
             <td>
-              <input class="input-group-text" [value]="item.Username" disabled />
+              <input class="input-group-text" [value]="item.lname" disabled />
             </td>
             <td>
-              <input class="input-group-text" type="text" [value]="item.Password" disabled />
+              <input class="input-group-text" type="text" [value]="item.password" disabled />
             </td>
             <td>
-              <input class="input-group-text" type="text" [value]="item.roleID" disabled />
+              <input class="input-group-text" type="text" [value]="item.roleid" disabled />
             </td>
             <td>
               <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
@@ -79,7 +79,7 @@
               </button>
             </td>
             <td>
-              <button class="btn btn-danger" (click)="deleteInfo(item.ID)" type="button">
+              <button class="btn btn-danger" (click)="deleteInfo(item.id)" type="button">
                 Delete
               </button>
             </td>
@@ -101,33 +101,33 @@
                   <div>
                     Full Name
                     <span class="text-danger" *ngIf="
-                    accForm.get('FName')?.invalid &&
-                    accForm.get('FName')?.touched
+                    accForm.get('fname')?.invalid &&
+                    accForm.get('fname')?.touched
                   ">is required!</span>
                     <input type="text" class="input-group mb-3 bg-light border-1 rounded shadow-sm bg-body-tertiary"
-                      formControlName="FName" />
-                    Username
+                      formControlName="fname" />
+                    lname
                     <span class="text-danger" *ngIf="
-                    accForm.get('Username')?.invalid &&
-                    accForm.get('Username')?.touched
+                    accForm.get('lname')?.invalid &&
+                    accForm.get('lname')?.touched
                   ">is required!</span>
                     <input type="text" class="input-group mb-3 bg-light border-1 rounded shadow-sm bg-body-tertiary"
-                      formControlName="Username" />
-                    Password
+                      formControlName="lname" />
+                    password
                     <span class="text-danger" *ngIf="
-                    accForm.get('Password')?.invalid &&
-                    accForm.get('Password')?.touched
+                    accForm.get('password')?.invalid &&
+                    accForm.get('password')?.touched
                   ">is required!</span>
                     <input type="text" class="input-group mb-3 bg-light border-1 rounded shadow-sm bg-body-tertiary"
-                      formControlName="Password" />
-                      Role ID
+                      formControlName="password" />
+                      Role id
                       <span class="text-danger" *ngIf="
-                      accForm.get('roleID')?.invalid &&
-                      accForm.get('roleID')?.touched
+                      accForm.get('roleid')?.invalid &&
+                      accForm.get('roleid')?.touched
                     ">is required!</span>
                       <input type="text" class="input-group mb-3 bg-light border-1 rounded shadow-sm bg-body-tertiary"
-                        formControlName="roleID" />
-                    <input type="hidden" formControlName="ID" />
+                        formControlName="roleid" />
+                    <input type="hidden" formControlName="id" />
                   </div>
                 </div>
                 <div class="modal-footer">
@@ -158,26 +158,26 @@
                   <div>
                     Full Name
                     <span class="text-danger" *ngIf="
-                    accForm.get('FName')?.invalid &&
-                    accForm.get('FName')?.touched
+                    accForm.get('fname')?.invalid &&
+                    accForm.get('fname')?.touched
                   ">is required!</span>
                     <input type="text" class="input-group mb-3 bg-light border-1 rounded shadow-sm bg-body-tertiary"
-                      formControlName="FName" />
+                      formControlName="fname" />
                     Username
                     <span class="text-danger" *ngIf="
-                    accForm.get('Username')?.invalid &&
-                    accForm.get('Username')?.touched
+                    accForm.get('lname')?.invalid &&
+                    accForm.get('lname')?.touched
                   ">is required!</span>
                     <input type="text" class="input-group mb-3 bg-light border-1 rounded shadow-sm bg-body-tertiary"
-                      formControlName="Username" />
-                    Password
+                      formControlName="lname" />
+                    password
                     <span class="text-danger" *ngIf="
-                    accForm.get('Password')?.invalid &&
-                    accForm.get('Password')?.touched
+                    accForm.get('password')?.invalid &&
+                    accForm.get('password')?.touched
                   ">is required!</span>
                     <input type="text" class="input-group mb-3 bg-light border-1 rounded shadow-sm bg-body-tertiary"
-                      formControlName="Password" />
-                    <input type="hidden" formControlName="ID" />
+                      formControlName="password" />
+                    <input type="hidden" formControlName="id" />
                   </div>
                 </div>
                 <div class="modal-footer">

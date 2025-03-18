@@ -21,29 +21,29 @@ export class FetchDataComponent implements OnInit {
 
   ngOnInit() {
     this.accForm = this.formBuilder.group({
-      ID: [0],
-      FName: ['', [Validators.maxLength(15)]],
-      Username: ['', [Validators.maxLength(10)]],
-      Password: [
+      id: [0],
+      fname: ['', [Validators.maxLength(10)]],
+      lname: ['', [Validators.maxLength(10)]],
+      password: [
         '',
         [
           Validators.maxLength(15),
           Validators.pattern('^(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d]{8,}$'),
         ],
       ],
-      roleID: ['', [Validators.maxLength(1)]],
+      roleid: ['', [Validators.maxLength(1)]],
     });
   }
 
   getItems() {
     // Retrieve the token from local storage
     const token = localStorage.getItem('token');
-    var roleIdString = localStorage.getItem('roleID') || '-1';
+    var roleIdString = localStorage.getItem('roleid') || '-1';
     var roleId = parseInt(roleIdString);
     var Idstring = localStorage.getItem('id') || '-1';
     var ID = parseInt(Idstring);
-    console.log('   wtf  ' + token);
-    if (token ==null) {
+    console.log('   token:  ' + token);
+    if (token != null) {
       this.isData = true;
       // Include the token in the HTTP headers for authorization
       const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
@@ -58,20 +58,19 @@ export class FetchDataComponent implements OnInit {
             },
             error: (err) => {
               console.log(err);
-              console.log('yyacvaaaa!');
             },
           }
           );
       }
       else {
         this.isAdmin = true;
-        this.http.get<items[]>(`${this.APIUrl}`, { headers }).subscribe({
+        this.http.get<items[]>(`${this.APIUrl}/info`, { headers }).subscribe({
           next: (value) => {
             this.items = value;
+            console.log(value);
           },
           error: (err) => {
             console.log(err);
-            console.log('yyacvaaaa!');
           },
         });
       }
@@ -84,7 +83,7 @@ export class FetchDataComponent implements OnInit {
   }
 
   openpostModal() {
-    console.log('karakum: ' + this.infoForm.value.FName);
+    console.log('karakum: ' + this.infoForm.value.fname);
   }
 
   updating() {
@@ -138,9 +137,9 @@ export class FetchDataComponent implements OnInit {
 }
 
 interface items {
-  ID: number;
-  FName: string;
-  Username: string;
-  Password: string;
-  roleID: number;
+  id: number;
+  fname: string;
+  lname: string;
+  password: string;
+  roleid: number;
 }

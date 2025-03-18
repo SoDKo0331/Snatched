@@ -11,76 +11,76 @@
                         </h4>
                         <div class="col-md-6">
                             <div class="form-floating mb-3"  *ngIf="isRegistration">
-                                <input type="text" class="form-control" id="FName" formControlName="FName"
+                                <input type="text" class="form-control" id="FName" formControlName="fname"
                                     placeholder="Full Name">
                                 <label for="FName">Full Name</label>
                                 <div class="invalid-feedback"
-                                    *ngIf="infoForm.get('FName')?.errors?.required && infoForm.get('FName')?.touched">
+                                    *ngIf="infoForm.get('fname')?.errors?.required && infoForm.get('fname')?.touched">
                                     Full Name is required!
                                 </div>
                                 <div class="invalid-feedback"
-                                    *ngIf="infoForm.get('FName')?.errors?.maxlength && infoForm.get('FName')?.touched">
+                                    *ngIf="infoForm.get('fname')?.errors?.maxlength && infoForm.get('fname')?.touched">
                                     Full Name should be at most 15 characters long.
                                 </div>
                             </div>
                             <div class="form-floating mb-3" *ngIf="isRegistration">
-                                <input type="text" class="form-control" id="Username" formControlName="Username"
-                                    placeholder="Username">
-                                <label for="Username">Username</label>
+                                <input type="text" class="form-control" id="lname" formControlName="lname"
+                                    placeholder="lname">
+                                <label for="lname">lname</label>
                                 <div class="invalid-feedback"
-                                    *ngIf="infoForm.get('Username')?.errors?.required && infoForm.get('Username')?.touched">
-                                    Username is required!
+                                    *ngIf="infoForm.get('lname')?.errors?.required && infoForm.get('lname')?.touched">
+                                    lname is required!
                                 </div>
                                 <div class="invalid-feedback"
-                                    *ngIf="infoForm.get('Username')?.errors?.maxlength && infoForm.get('Username')?.touched">
-                                    Username should be at most 10 characters long.
+                                    *ngIf="infoForm.get('lname')?.errors?.maxlength && infoForm.get('lname')?.touched">
+                                    lname should be at most 10 characters long.
                                 </div>
                             </div>
                             <div class="form-floating mb-3" *ngIf="isRegistration">
-                                <input type="password" class="form-control" id="Password" formControlName="Password"
-                                    placeholder="Password">
-                                <label for="Password">Password</label>
+                                <input type="password" class="form-control" id="password" formControlName="password"
+                                    placeholder="password">
+                                <label for="password">password</label>
                                 <div class="invalid-feedback"
-                                    *ngIf="infoForm.get('Password')?.errors?.required && infoForm.get('Password')?.touched">
-                                    Password is required!
+                                    *ngIf="infoForm.get('password')?.errors?.required && infoForm.get('password')?.touched">
+                                    password is required!
                                 </div>
                                 <div class="invalid-feedback"
-                                    *ngIf="infoForm.get('Password')?.errors?.pattern && infoForm.get('Password')?.touched">
-                                    Password should contain at least one uppercase letter and one digit.
+                                    *ngIf="infoForm.get('password')?.errors?.pattern && infoForm.get('password')?.touched">
+                                    password should contain at least one uppercase letter and one digit.
                                 </div>
                                 <div class="invalid-feedback"
-                                    *ngIf="infoForm.get('Password')?.errors?.maxlength && infoForm.get('Password')?.touched">
-                                    Password should be at most 15 characters long.
+                                    *ngIf="infoForm.get('password')?.errors?.maxlength && infoForm.get('password')?.touched">
+                                    password should be at most 15 characters long.
                                 </div>
                             </div>
                             <div class="form-floating mb-3" *ngIf="!isRegistration">
-                                <input type="text" class="form-control" id="Username" formControlName="Username"
-                                    placeholder="Username">
-                                <label for="Username">Username</label>
+                                <input type="text" class="form-control" id="lname" formControlName="lname"
+                                    placeholder="lname">
+                                <label for="lname">lname</label>
                                 <div class="invalid-feedback"
-                                    *ngIf="loginForm.get('Username')?.errors?.required && loginForm.get('Username')?.touched">
-                                    Username is required!
+                                    *ngIf="loginForm.get('lname')?.errors?.required && loginForm.get('lname')?.touched">
+                                    lname is required!
                                 </div>
                                 <div class="invalid-feedback"
-                                    *ngIf="loginForm.get('Username')?.errors?.maxlength && loginForm.get('Username')?.touched">
-                                    Username should be at most 10 characters long.
+                                    *ngIf="loginForm.get('lname')?.errors?.maxlength && loginForm.get('lname')?.touched">
+                                    lname should be at most 10 characters long.
                                 </div>
                             </div>
                             <div class="form-floating mb-3"*ngIf="!isRegistration">
-                                <input type="password" class="form-control" id="Password" formControlName="Password"
-                                    placeholder="Password">
-                                <label for="Password">Password</label>
+                                <input type="password" class="form-control" id="password" formControlName="password"
+                                    placeholder="password">
+                                <label for="password">password</label>
                                 <div class="invalid-feedback"
-                                    *ngIf="loginForm.get('Password')?.errors?.required && loginForm.get('Password')?.touched">
-                                    Password is required!
+                                    *ngIf="loginForm.get('password')?.errors?.required && loginForm.get('password')?.touched">
+                                    password is required!
                                 </div>
                                 <div class="invalid-feedback"
-                                    *ngIf="loginForm.get('Password')?.errors?.pattern && loginForm.get('Password')?.touched">
-                                    Password should contain at least one uppercase letter and one digit.
+                                    *ngIf="loginForm.get('password')?.errors?.pattern && loginForm.get('password')?.touched">
+                                    password should contain at least one uppercase letter and one digit.
                                 </div>
                                 <div class="invalid-feedback"
-                                    *ngIf="loginForm.get('Password')?.errors?.maxlength && loginForm.get('Password')?.touched">
-                                    Password should be at most 15 characters long.
+                                    *ngIf="loginForm.get('password')?.errors?.maxlength && loginForm.get('password')?.touched">
+                                    password should be at most 15 characters long.
                                 </div>
                             </div>
                         </div>

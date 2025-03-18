@@ -23,14 +23,14 @@ public class WeatherForecastController : ControllerBase
         _configuration = configuration;
     }
 
-    [HttpGet, Authorize, Route("info")]
+    [HttpGet, Route("info")]
     public IActionResult Get()
     {
         var sds = _configuration.GetConnectionString("DefaultConnection");
 
         using (SqlConnection connection = new SqlConnection(sds))
         {
-            return Ok(connection.Query("select * from Registeration").AsList());
+            return Ok(connection.Query("select * from Test").AsList());
         }
     }
     [HttpGet, Authorize, Route("user")]
@@ -43,19 +43,19 @@ public class WeatherForecastController : ControllerBase
         using (SqlConnection connection = new SqlConnection(sds))
         {
             // You can use the parameterName in your SQL query or perform any other logic.
-            return Ok(connection.Query("select * from Registeration where ID = @ID", new{ID = id}).AsList());
+            return Ok(connection.Query("select * from Test where id = @id", new{id = id}).AsList());
         }
     }
 
     [HttpPost]
     public IActionResult Post(Temp shoe)
     {
-        Console.Write("Posting:  " + shoe.FName);
+        Console.Write("Posting:  " + shoe.fname);
         var sds = _configuration.GetConnectionString("DefaultConnection");
         using (SqlConnection connection = new SqlConnection(sds))
         {
-            return Ok(connection.Query("insert into Registeration values(@FName, @Username, @Password, @roleID)",
-             new { FName = shoe.FName, Username = shoe.Username, Password = shoe.Password, roleID = shoe.roleID }).AsList());
+            return Ok(connection.Query("insert into Test values(@fname, @lname, @password, @roleID)",
+             new { fname = shoe.fname, lname = shoe.lname, password = shoe.password, roleid = shoe.roleid }).AsList());
         }
     }
 
@@ -64,10 +64,10 @@ public class WeatherForecastController : ControllerBase
     {
         using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
         {
-            var sd = connection.Query<Pmet>("select ID, roleID, Username from Registeration where Username = @Username and Password = @Password", new
+            var sd = connection.Query<Pmet>("select id, lname, roleid from Test where lname = @lname and password = @password", new
             {
-                Username = param.Username,
-                Password = param.Password
+                lname = param.lname,
+                password = param.password
             }).FirstOrDefault();
 
            if (sd != null)
@@ -80,8 +80,8 @@ public class WeatherForecastController : ControllerBase
                 {
                     Subject = new ClaimsIdentity(new Claim[]
                     {
-                        new Claim(ClaimTypes.Name, sd.ID.ToString()),
-                        new Claim(ClaimTypes.Name, sd.roleID.ToString())
+                        new Claim(ClaimTypes.Name, sd.id.ToString()),
+                        new Claim(ClaimTypes.Name, sd.id.ToString())
                     }),
                     Expires = DateTime.UtcNow.AddMinutes(Convert.ToInt32(_configuration["Jwt:refreshExpireMinute"])),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
@@ -91,13 +91,13 @@ public class WeatherForecastController : ControllerBase
                 var token = tokenHandler.CreateToken(tokenDescriptor);
                 var tokenString = tokenHandler.WriteToken(token);
 
-                return Ok(new { token = tokenString, id = sd.ID, roleID = sd.roleID, username = sd.Username });
+                return Ok(new { token = tokenString, id = sd.id, roleid = sd.roleid, lname = sd.lname });
             }
             else
             {
                 return Unauthorized(null);
             }
-            return Ok(new { id = sd.ID, roleID = sd.roleID, username = sd.Username });
+            return Ok(new { id = sd.id, roleid = sd.roleid, lname = sd.lname });
         }
     }
 
@@ -117,13 +117,13 @@ public class WeatherForecastController : ControllerBase
     [HttpPut]
     public IActionResult Put(Pmet list)
     {
-        Console.Write("Updating|:  " + list.ID);
+        Console.Write("Updating|:  " + list.id);
 
         var data = _configuration.GetConnectionString("DefaultConnection");
         using (SqlConnection connection = new SqlConnection(data))
         {
-            return Ok(connection.Query("update Registeration set FName=@FName, Username=@Username, Password=@Password, roleID=@roleID where ID=@ID",
-            new { ID = list.ID, FName = list.FName, Username = list.Username, Password = list.Password, roleID = list.roleID }).AsList());
+            return Ok(connection.Query("update Test set fname=@fname, lname=@lname, password=@password, roleid=@roleid where id=@id",
+            new { id = list.id, fname = list.fname, lname = list.lname, password = list.password, roleid = list.roleid }).AsList());
         }
 
     }
@@ -136,25 +136,25 @@ public class WeatherForecastController : ControllerBase
         var data = _configuration.GetConnectionString("DefaultConnection");
         using (SqlConnection connection = new SqlConnection(data))
         {
-            return Ok(connection.Query("delete from Registeration where ID=@ID", new { ID = id }).AsList());
+            return Ok(connection.Query("delete from Test where ID=@ID", new { ID = id }).AsList());
         }
 
     }
 
     public class Temp
     {
-        public int ID { get; set; }
-        public required string FName { get; set; }
-        public required string Username { get; set; }
-        public required string Password { get; set; }
-        public int roleID { get; set; }
+        public int id { get; set; }
+        public required string fname { get; set; }
+        public required string lname { get; set; }
+        public required string password { get; set; }
+        public int roleid { get; set; }
     }
 
     public class Ltemp
     {
         [Required]
-        public string? Username { get; set; }
-        public string? Password { get; set; }
+        public string? lname { get; set; }
+        public string? password { get; set; }
 
     }
 
@@ -173,11 +173,11 @@ public class WeatherForecastController : ControllerBase
     public class Pmet
     {
         [Required]
-        public required int ID { get; set; }
-        public string? FName { get; set; }
-        public string? Username { get; set; }
-        public string? Password { get; set; }
-        public int? roleID { get; set; }
+        public required int id { get; set; }
+        public string? fname { get; set; }
+        public string? lname { get; set; }
+        public string? password { get; set; }
+        public int? roleid { get; set; }
     }
 
 }

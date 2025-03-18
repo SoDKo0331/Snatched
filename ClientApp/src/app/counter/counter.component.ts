@@ -81,34 +81,34 @@ export class CounterComponent implements OnInit {
     );
     this.infoForm = this.formBuilder.group({
       ID: [0],
-      FName: ['', [Validators.required, Validators.maxLength(15)]],
-      Username: ['', [Validators.required, Validators.maxLength(10)]],
-      Password: [
+      fname: ['', [Validators.required, Validators.maxLength(15)]],
+      lname: ['', [Validators.required, Validators.maxLength(10)]],
+      password: [
         '',
-        [
-          Validators.required,
-          Validators.maxLength(15),
-          Validators.pattern('^(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d]{8,}$'),
-        ],
+        // [
+        //   Validators.required,
+        //   Validators.maxLength(15),
+        //   Validators.pattern('^(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d]{8,}$'),
+        // ],
       ],
       roleID: [0],
     });
 
     this.loginForm = this.formBuilder.group({
-      Username: ['', [Validators.required, Validators.maxLength(10)]],
-      Password: [
+      lname: ['', [Validators.required, Validators.maxLength(10)]],
+      password: [
         '',
-        [
-          Validators.required,
-          Validators.maxLength(15),
-          Validators.pattern('^(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d]{8,}$'),
-        ],
+        // [
+        //   Validators.required,
+        //   Validators.maxLength(15),
+        //   Validators.pattern('^(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d]{8,}$'),
+        // ],
       ],
     });
   }
 
   openpostModal() {
-    console.log('karakum: ' + this.infoForm.value.FName);
+    console.log('karakum: ' + this.infoForm.value.fname);
   }
 
   onSubmit() {
@@ -116,12 +116,12 @@ export class CounterComponent implements OnInit {
       if (this.infoForm.valid) {
         this.http.post(`${this.APIUrl}`, this.infoForm.value).subscribe({
           next: () => {
-            console.log(`Posted: ${this.infoForm.value.Username}`);
+            console.log(`Posted: ${this.infoForm.value}`);
             this.showSuccessToaster();
             this.ngOnInit();
           },
           error: (err) => {
-            console.log(`Posted: ${this.infoForm.value.Username}`);
+            console.log(`Posted: ${this.infoForm.value}`);
             console.log(err);
             console.log('error here!');
           },
@@ -135,10 +135,10 @@ export class CounterComponent implements OnInit {
               // Store the token in local storage
               localStorage.setItem('token', response.token);
               localStorage.setItem('id', response.id);
-              localStorage.setItem('username', response.username);
-              localStorage.setItem('roleID', response.roleID);
+              localStorage.setItem('lname', response.lname);
+              localStorage.setItem('roleid', response.roleid);
               console.log(response);
-              if(response.roleID == 1) {
+              if(response.roleid == 1) {
                 this.showErrorToasterla();
               }
               else this.showErrorToasterli();
@@ -174,15 +174,15 @@ export class CounterComponent implements OnInit {
 }
 
 interface data {
-  ID: number;
-  Username: string;
-  Password: string;
+  id: number;
+  lname: string;
+  password: string;
 }
 
 interface items {
-  ID: number;
-  FName: string;
-  Username: string;
-  Password: string;
-  roleID: number;
+  id: number;
+  fname: string;
+  lname: string;
+  password: string;
+  roleid: number;
 }
